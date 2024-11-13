@@ -13,21 +13,19 @@ private:
 	int compares;
 
 public:
-	//Constructor and destructor
+	// Constructor and destructor
 	Transpose() : compares(0) {}
 	~Transpose() {}
 
-	//Find element in the list
+	// Find element in the list
 	bool search(const E& it) {
 		int found = 0;
 		list.moveToStart();
 
-		//Loop to determine whether there are duplicates in the list
 		for (int i = 0; i < list.length(); i++)
 		{
 			compares++;
 
-			//If there is a duplicate
 			if (list.getValue() == it)
 			{
 				found = 1;
@@ -36,7 +34,6 @@ public:
 			list.next();
 		}
 
-		//If there is a duplicate
 		if (found == 1)
 		{
 			int temp = list.getNumAccessed();
@@ -54,30 +51,29 @@ public:
 		return false;
 	}
 
-	//Append
 	void addIt(const E& it) {
 		list.append(it);
 	}
 
-	//print the list
+	// Print the list
 	void printlist() const {
 		cout << "\nTranspose Heuristic:\n" << "Size of List: " << size();
 		cout << "\nNumber of Compares: " << getCompares();
 		list.print();
 	}
 
-	//Reorder elements
+	// Reorder the list
 	void reorder() {
 		E frontVal = list.frontValue();
 		E endValue = list.tailValue();
 
-		//If the current value matches the front value then stop the function
+		// Stop if current = front value
 		if (list.getValue() == frontVal)
 		{
 			return;
 		}
 
-		//If the current value matches the value at the end of the list
+		// Reorder if current = end value
 		if (list.getValue() == endValue)
 		{
 			int endValue = list.getNumAccessed();
@@ -111,19 +107,17 @@ public:
 		list.setNumAccessed(prev);
 	}
 
-	//Print number of times
+	// Print n times
 	void printlist(int n) const {
 		cout << "\nTranspose Heuristic:\n" << "Size of List: " << size();
 		cout << "\nNumber of Compares: " << getCompares();
 		list.print(n);
 	}
 
-	//return number of compares
 	int getCompares() const {
 		return compares;
 	}
 
-	//return size
 	int size() const {
 		return list.length();
 	}

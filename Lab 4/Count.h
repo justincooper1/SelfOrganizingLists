@@ -18,31 +18,29 @@ public:
     ~Count() {}
 
     bool search(const E& it) override {
-        int found = 0;
+        bool found = false;
         list.moveToStart();
 
         for (int i = 0; i < list.length(); i++) {
-            compares++;
+            compares++;  // Increment compares for each comparison
             if (list.getValue() == it) {
-                found = 1;
+                found = true;
                 break;
             }
             list.next();
         }
 
-        if (found == 1) {
+        if (found) {
             int tmp = list.getNumAccessed();
             list.setNumAccessed(tmp + 1);
             reorder();
-            return true;
-        }
-        else {
+        } else {
             list.moveToEnd();
             list.insert(it);
             list.setNumAccessed(0);
-            return true;
         }
-        return false;
+
+        return found;
     }
 
     void addIt(const E& it) override {
